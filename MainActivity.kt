@@ -14,12 +14,15 @@ class MainActivity : AppCompatActivity() {
         var inppasswordagain = findViewById<EditText>(R.id.inppasswordagain)
         var button = findViewById<Button>(R.id.button4)
         var wyswietlanie = findViewById<TextView>(R.id.textView5)
-        button.setOnClickListener {
+
+        fun validandregister(){
             if(inpemail.text.contains("@"))
             {
-
-                if(inppassword.text.equals(inppasswordagain.text)){
-                    wyswietlanie.setText("Witaj" + inpemail.text)
+                var email = inpemail.text
+                var pierwsze = inppassword.text.trim().toString()
+                var drugi = inppasswordagain.text.trim().toString()
+                if( pierwsze.equals(drugi, true) ){
+                    wyswietlanie.setText("Witaj " + email)
                 }
                 else{
                     wyswietlanie.setText("Hasła się różnią")
@@ -29,6 +32,9 @@ class MainActivity : AppCompatActivity() {
             {
                 wyswietlanie.setText("Nieprawidłowy adres e-mail")
             }
+        }
+        button.setOnClickListener {
+           validandregister()
         }
 
 
